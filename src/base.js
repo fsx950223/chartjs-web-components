@@ -26,13 +26,24 @@ class BaseChart extends LitElement {
             this.chart.resize();
         });
     }
-    _didRender(props) {
-        const ctx = this.shadowRoot.querySelector('canvas').getContext('2d');
-        this.chart = new Chart(ctx, {
-            type: props.type,
-            data: props.data,
-            options: props.options
-        });
+    _didRender(props, changedProps, oldProps) {
+        if (!this.chart) {
+            const ctx = this.shadowRoot.querySelector('canvas').getContext('2d');
+            this.chart = new Chart(ctx, {
+                type: props.type,
+                data: props.data,
+                options: props.options
+            });
+        }
+        else {
+            this.chart.type = props.type;
+            this.chart.data = props.data;
+            this.chart.options = props.options;
+            this.chart.update();
+        }
+    }
+    update() {
+        this.chart.update();
     }
 }
 customElements.define('base-chart', BaseChart);

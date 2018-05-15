@@ -12,8 +12,14 @@ import { LitElement, html } from '@polymer/lit-element';
 import './base.js';
 
 class MyApp extends LitElement {
+  static get properties() {
+    return {
+      type: String,
+      data: Object
+    }
+  }
   data={
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels: ["January", "February", "March", "April", "May", "June", "July","July","July"],
     datasets: [{
         label: "My First dataset",
         backgroundColor: 'rgb(255, 99, 132)',
@@ -21,10 +27,18 @@ class MyApp extends LitElement {
         data: [0, 10, 5, 2, 20, 30, 45],
     }]
   }
-  _render() {
+  options={}
+  type="line"
+  _render({type,data,options}) {
     return html`
-      <base-chart type="line" data="${this.data}" options="${{}}"></base-chart>
+      <base-chart type="${type}" data="${data}" options="${options}"></base-chart>
     `;
+  }
+  _didRender(){
+    setInterval(()=>{
+      this.data.datasets[0].data.push(99)
+      this.shadowRoot.querySelector('base-chart').update()
+    },3000)
   }
 }
 
