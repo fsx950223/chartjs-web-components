@@ -8,6 +8,11 @@ class BaseChart extends LitElement {
             options: Object
         };
     }
+    _firstRendered() {
+        window.addEventListener('resize', () => {
+            this.chart.resize();
+        });
+    }
     _render() {
         return html `
             <style>
