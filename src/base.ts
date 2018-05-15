@@ -16,8 +16,8 @@ class BaseChart extends LitElement{
                     position: relative; 
                 }
                 canvas{
-                    width:"400px";
-                    height:"400px";
+                    width:400px;
+                    height:400px;
                 }
             </style>
             <div class="chart-size">
@@ -25,13 +25,6 @@ class BaseChart extends LitElement{
             </div>
         `;
     }
-    constructor(){
-        super()
-        window.addEventListener('resize',()=>{
-            this.chart.resize()
-        })
-    }
-
     _didRender(props,changedProps,oldProps){
         const data=typeof props.data==='string'?JSON.parse(props.data):props.data
         const options=typeof props.options==='string'?JSON.parse(props.options):props.options
@@ -49,9 +42,15 @@ class BaseChart extends LitElement{
             this.chart.update()
         }
     }
-    update(){
+    update(labels,datasets){
         this.chart.update()
-    }   
+    }
+    get dataValue(){
+        return this.data
+    }
+    get optionsValue(){
+        return this.options
+    }
 }
 
 customElements.define('base-chart', BaseChart);
