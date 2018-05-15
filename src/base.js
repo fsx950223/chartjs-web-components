@@ -42,14 +42,14 @@ class BaseChart extends LitElement {
             this.chart.update();
         }
     }
-    update(labels, datasets) {
+    update() {
         this.chart.update();
     }
     get dataValue() {
-        return this.data;
+        return this.chart.data;
     }
     get optionsValue() {
-        return this.options;
+        return this.chart.options;
     }
 }
 customElements.define('base-chart', BaseChart);
