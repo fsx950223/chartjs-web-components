@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "experimentalDecorators":true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "declaration": false,
+    "plugins": [
+      {
+        "name": "typescript-lit-html-plugin"
+      }
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

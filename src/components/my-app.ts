@@ -9,25 +9,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
 
 import { LitElement, html } from '@polymer/lit-element';
+import './base.js';
 
-// This element is *not* connected to the redux store.
-class ShopItem extends LitElement {
-  _render(props) {
-    return html`
-      ${props.name}:
-      <span hidden="${props.amount === 0}">${props.amount} * </span>
-      $${props.price}
-      </span>
-    `;
+class MyApp extends LitElement {
+  data={
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [{
+        label: "My First dataset",
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [0, 10, 5, 2, 20, 30, 45],
+    }]
   }
-
-  static get properties() {
-    return {
-      name: String,
-      amount: String,
-      price: String
-    }
+  _render() {
+    return html`
+        <base-chart type="line" data="${this.data}" options="${{}}"></base-chart>
+    `;
   }
 }
 
-window.customElements.define('shop-item', ShopItem);
+window.customElements.define('my-app', MyApp);
