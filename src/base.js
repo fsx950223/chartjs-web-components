@@ -5,12 +5,10 @@ class BaseChart extends LitElement {
         return {
             type: String,
             data: Object,
-            options: Object,
-            height: String,
-            width: String
+            options: Object
         };
     }
-    _render({ width, height }) {
+    _render() {
         return html `
             <style>
                 .chart-size{
