@@ -10,6 +10,13 @@
   "scripts": {
     "start": "polymer serve"
   },
+  "keywords": [
+    "web-components",
+    "html",
+    "chart.js",
+    "lit-element",
+    "typescript"
+  ],
   "dependencies": {
     "@polymer/lit-element": "^0.5.0",
     "chart.js": "^2.7.2"
