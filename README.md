@@ -1,4 +1,4 @@
-# Charyjs Web Components
+# Chartjs Web Components
 
 The web components for chart.js which is built on lit-element
 
