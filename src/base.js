@@ -14,6 +14,10 @@ class BaseChart extends LitElement {
                 .chart-size{
                     position: relative; 
                 }
+                canvas{
+                    width:"400px";
+                    height:"400px";
+                }
             </style>
             <div class="chart-size">
                 <canvas></canvas>
@@ -27,18 +31,20 @@ class BaseChart extends LitElement {
         });
     }
     _didRender(props, changedProps, oldProps) {
+        const data = typeof props.data === 'string' ? JSON.parse(props.data) : props.data;
+        const options = typeof props.options === 'string' ? JSON.parse(props.options) : props.options;
         if (!this.chart) {
             const ctx = this.shadowRoot.querySelector('canvas').getContext('2d');
             this.chart = new Chart(ctx, {
                 type: props.type,
-                data: props.data,
-                options: props.options
+                data: data,
+                options: options
             });
         }
         else {
             this.chart.type = props.type;
-            this.chart.data = props.data;
-            this.chart.options = props.options;
+            this.chart.data = data;
+            this.chart.options = options;
             this.chart.update();
         }
     }
