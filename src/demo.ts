@@ -9,9 +9,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
 
 import { LitElement, html } from '@polymer/lit-element';
-import './base.js';
+import './base';
 
-class MyApp extends LitElement {
+class MyDemo extends LitElement {
   static get properties() {
     return {
       type: String,
@@ -36,10 +36,11 @@ class MyApp extends LitElement {
   }
   _didRender(){
     setInterval(()=>{
-      this.data.datasets[0].data.push(99)
-      this.shadowRoot.querySelector('base-chart').update()
+      let data=JSON.parse(JSON.stringify(this.shadowRoot.querySelector('base-chart').dataValue.datasets[0].data))
+      data.push(99)
+      this.shadowRoot.querySelector('base-chart').dataValue.datasets[0].data=data
     },3000)
   }
 }
 
-window.customElements.define('my-app', MyApp);
+window.customElements.define('my-demo', MyDemo);

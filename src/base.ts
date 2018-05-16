@@ -1,5 +1,6 @@
 import {LitElement,html} from '@polymer/lit-element'
 import 'chart.js/dist/Chart.bundle.min.js'
+
 declare var Chart
 class BaseChart extends LitElement{
     static get properties(){
@@ -12,6 +13,16 @@ class BaseChart extends LitElement{
     _firstRendered(){
         window.addEventListener('resize',()=>{
             this.chart.resize()
+        })
+    }
+    observe(obj){
+        const {update}=this
+        return new Proxy(obj,{
+            set(target,prop,val,receiver){
+                target[prop]=val
+                update()
+                return true
+            }
         })
     }
     _render(){
@@ -46,8 +57,13 @@ class BaseChart extends LitElement{
             this.chart.options=options
             this.chart.update()
         }
+        this.chart.data=this.observe(this.chart.data)       
+        for(const prop in this.chart.data){
+            this.chart.data[prop]=this.observe(this.chart.data[prop])
+        }
+        this.chart.data.datasets=this.chart.data.datasets.map(dataset=>this.observe(dataset))
     }
-    update(){
+    update=()=>{
         this.chart.update()
     }
     get dataValue(){

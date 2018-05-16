@@ -8,8 +8,8 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 import { LitElement, html } from '@polymer/lit-element';
-import './base.js';
-class MyApp extends LitElement {
+import './base';
+class MyDemo extends LitElement {
     constructor() {
         super(...arguments);
         this.data = {
@@ -37,10 +37,11 @@ class MyApp extends LitElement {
     }
     _didRender() {
         setInterval(() => {
-            this.data.datasets[0].data.push(99);
-            this.shadowRoot.querySelector('base-chart').update();
+            let data = JSON.parse(JSON.stringify(this.shadowRoot.querySelector('base-chart').dataValue.datasets[0].data));
+            data.push(99);
+            this.shadowRoot.querySelector('base-chart').dataValue.datasets[0].data = data;
         }, 3000);
     }
 }
-window.customElements.define('my-app', MyApp);
-//# sourceMappingURL=my-app.js.map
+window.customElements.define('my-demo', MyDemo);
+//# sourceMappingURL=demo.js.map
