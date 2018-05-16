@@ -66,7 +66,38 @@ class BaseChart extends LitElement {
         for (const prop in this.chart.data) {
             this.chart.data[prop] = this.observe(this.chart.data[prop]);
         }
-        this.chart.data.datasets = this.chart.data.datasets.map(dataset => this.observe(dataset));
+        const me = this;
+        class NewArray extends Array {
+            push(...args) {
+                const result = super.push(...args);
+                Promise.resolve().then(() => me.update());
+                return result;
+            }
+            pop() {
+                const result = super.pop();
+                Promise.resolve().then(() => me.update());
+                return result;
+            }
+            shift() {
+                const result = super.shift();
+                Promise.resolve().then(() => me.update());
+                return result;
+            }
+            unshift(...args) {
+                const result = super.unshift(...args);
+                Promise.resolve().then(() => me.update());
+                return result;
+            }
+            splice(index, count, num) {
+                const result = super.splice(index, count, num);
+                Promise.resolve().then(() => me.update());
+                return result;
+            }
+        }
+        this.chart.data.datasets.map(dataset => {
+            dataset.data = new NewArray(...dataset.data);
+            return this.observe(dataset);
+        });
     }
     get dataValue() {
         return this.chart.data;

@@ -19,7 +19,7 @@ class MyDemo extends LitElement {
     }
   }
   data={
-    labels: ["January", "February", "March", "April", "May", "June", "July","July","July"],
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [{
         label: "My First dataset",
         backgroundColor: 'rgb(255, 99, 132)',
@@ -36,9 +36,8 @@ class MyDemo extends LitElement {
   }
   _didRender(){
     setInterval(()=>{
-      let data=JSON.parse(JSON.stringify(this.shadowRoot.querySelector('base-chart').dataValue.datasets[0].data))
-      data.push(99)
-      this.shadowRoot.querySelector('base-chart').dataValue.datasets[0].data=data
+      this.shadowRoot.querySelector('base-chart').dataValue.labels.push('July')
+      this.shadowRoot.querySelector('base-chart').dataValue.datasets[0].data.push(parseInt(''+Math.random()*100))
     },3000)
   }
 }
