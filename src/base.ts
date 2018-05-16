@@ -63,30 +63,23 @@ class BaseChart extends LitElement{
         }
         const me=this
         class NewArray extends Array {
-            push (...args) {
-                const result=super.push(...args)
-                Promise.resolve().then(()=> me.update())
-                return result
-            }
-            pop () {
-                const result=super.pop()
-                Promise.resolve().then(()=> me.update())
-                return result
-            }
-            shift(){
-                const result=super.shift()
-                Promise.resolve().then(()=> me.update())
-                return result
-            }
-            unshift(...args){
-                const result=super.unshift(...args)
-                Promise.resolve().then(()=> me.update())
-                return result
-            }
-            splice(index,count,num?){
-                const result=super.splice(index,count,num)
-                Promise.resolve().then(()=> me.update())
-                return result
+            constructor(...args){
+                super(...args);
+                [
+                    'push',
+                    'pop',
+                    'shift',
+                    'unshift',
+                    'splice',
+                    'sort',
+                    'reverse'
+                ].forEach(method => {
+                    this[method]=()=>{
+                        const result=super[method](...args)
+                        Promise.resolve().then(()=> me.update())
+                        return result
+                    }
+                })
             }
         }
         this.chart.data.datasets.map(dataset=>{
