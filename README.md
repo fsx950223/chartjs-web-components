@@ -12,3 +12,7 @@ npm i chartjs-web-components
 ``` js
 import 'chartjs-web-components'
 ```
+## Demo
+```
+npm run start
+```
