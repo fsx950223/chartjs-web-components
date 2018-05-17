@@ -20,7 +20,7 @@ class BaseChart extends LitElement{
         return new Proxy(obj,{
             set(target,prop,val,receiver){
                 target[prop]=val
-                update()
+                Promise.resolve().then(()=>update())
                 return true
             }
         })
@@ -61,29 +61,8 @@ class BaseChart extends LitElement{
         for(const prop in this.chart.data){
             this.chart.data[prop]=this.observe(this.chart.data[prop])
         }
-        const me=this
-        class NewArray extends Array {
-            constructor(...args){
-                super(...args);
-                [
-                    'push',
-                    'pop',
-                    'shift',
-                    'unshift',
-                    'splice',
-                    'sort',
-                    'reverse'
-                ].forEach(method => {
-                    this[method]=()=>{
-                        const result=super[method](...args)
-                        Promise.resolve().then(()=> me.update())
-                        return result
-                    }
-                })
-            }
-        }
-        this.chart.data.datasets.map(dataset=>{
-            dataset.data=new NewArray(...dataset.data)
+        this.chart.data.datasets=this.chart.data.datasets.map(dataset=>{
+            dataset.data=this.observe(dataset.data)
             return this.observe(dataset)
         })
     }
