@@ -12,6 +12,13 @@ npm i chartjs-web-components
 ``` js
 import 'chartjs-web-components'
 ```
+## Vue Example
+``` html
+<base-chart type="chartType" :data="JSON.stringify(this.chartData)" :options="JSON.stringify(this.chartOptions)"></base-chart>
+```
+``` js
+import 'chartjs-web-components'
+```
 ## Demo
 ```
 npm run start
