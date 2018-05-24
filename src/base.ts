@@ -34,6 +34,7 @@ class BaseChart extends LitElement{
                 canvas{
                     width:400px;
                     height:400px;
+                    min-height:400px;
                 }
             </style>
             <div class="chart-size">
