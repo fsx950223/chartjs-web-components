@@ -17,7 +17,7 @@
     "lit-element",
     "typescript"
   ],
-  "dependencies": {
+  "peerDependencies": {
     "@polymer/lit-element": "^0.5.0"
   },
   "devDependencies": {
