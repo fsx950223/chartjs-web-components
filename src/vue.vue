@@ -2,33 +2,26 @@
     <base-chart id="chartjs-web-components" :type="type"></base-chart>
 </template>
 <script lang='ts'>
-export default {
-    props:{
-        data:Object,
-        options:Object,
-        type:String,
-    },
-    data(){
-        return {
-            chart:null
-        }
-    },
+import {Vue,Component,Prop,Watch} from 'vue-property-decorator'
+@Component()
+export default class Chartjs extends Vue{
+    @Prop(Object)
+    data
+    @Prop(Object)
+    options
+    @Prop(String)
+    type
+    chart=null
     mounted(){
         this.chart=document.querySelector('#chartjs-web-components')
-    },
-    watch:{
-        data:{
-            handler(val) {
-                this.chart.dataValue=val
-            },
-            deep: true
-        },
-        options:{
-            handler(val) {
-                this.chart.optionsValue=val
-            },
-            deep: true
-        }
+    }
+    @Watch('data',{ deep: true })
+    onDataChange(val){
+        this.chart.dataValue=val
+    }
+    @Watch('options',{ deep: true })
+    onOptionsChange(val){
+        this.chart.optionsValue=val
     }
 }
 </script>

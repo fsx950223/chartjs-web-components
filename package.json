@@ -1,6 +1,6 @@
 {
   "name": "chartjs-web-components",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "flat": true,
   "contributors": [
     "fsx950223"
@@ -23,14 +23,24 @@
     "@polymer/lit-element": "^0.5.2"
   },
   "devDependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
     "@types/react": "^16.4.9",
     "@types/react-dom": "^16.0.7",
     "@webcomponents/webcomponentsjs": "^2.0.4",
-    "chart.js": "^2.7.2",
+    "babel-loader": "^7.1.5",
+    "happypack": "^5.0.0",
     "polymer-cli": "^1.7.7",
+    "ts-loader": "^4.4.2",
     "typescript": "^3.0.1",
-    "typescript-lit-html-plugin": "^0.5.3"
+    "typescript-lit-html-plugin": "^0.5.3",
+    "vue-loader": "^15.3.0",
+    "vue-property-decorator": "^7.0.0",
+    "webpack": "^4.16.5",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "peerDependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "vue": "^2.5.17",
+    "chart.js": "^2.7.2"
   }
 }
