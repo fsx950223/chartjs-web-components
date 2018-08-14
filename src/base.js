@@ -3,6 +3,7 @@ import 'chart.js/dist/Chart.bundle.min.js';
 class BaseChart extends LitElement {
     constructor() {
         super(...arguments);
+        this.chart = null;
         this.update = () => {
             this.chart.update();
         };
@@ -38,7 +39,6 @@ class BaseChart extends LitElement {
                 canvas{
                     width:400px;
                     height:400px;
-                    min-height: 400px;
                 }
             </style>
             <div class="chart-size">
@@ -47,14 +47,14 @@ class BaseChart extends LitElement {
         `;
     }
     _didRender(props, changedProps, oldProps) {
-        const data = typeof props.data === 'string' ? JSON.parse(props.data) : props.data;
-        const options = typeof props.options === 'string' ? JSON.parse(props.options) : props.options;
+        const data = typeof props.data === 'string' ? JSON.parse(props.data) : (props.data || {});
+        const options = typeof props.options === 'string' ? JSON.parse(props.options) : (props.options || {});
         if (!this.chart) {
             const ctx = this.shadowRoot.querySelector('canvas').getContext('2d');
             this.chart = new Chart(ctx, {
                 type: props.type,
-                data: data,
-                options: options
+                data,
+                options
             });
         }
         else {

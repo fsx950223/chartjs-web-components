@@ -1,7 +1,8 @@
 build/
 node_modules/
-test/integration/screenshots-current
 yarn.lock
 .DS_Store
 .vscode
 package-lock.json
+**/*.map
+

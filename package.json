@@ -15,16 +15,22 @@
     "html",
     "chart.js",
     "lit-element",
-    "typescript"
+    "typescript",
+    "react",
+    "vue"
   ],
-  "peerDependencies": {
-    "@polymer/lit-element": "^0.5.0"
+  "dependencies": {
+    "@polymer/lit-element": "^0.5.2"
   },
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "@types/react": "^16.4.9",
+    "@types/react-dom": "^16.0.7",
+    "@webcomponents/webcomponentsjs": "^2.0.4",
     "chart.js": "^2.7.2",
-    "polymer-cli": "^1.7.2",
-    "typescript": "^2.8.3",
-    "typescript-lit-html-plugin": "^0.2.0"
+    "polymer-cli": "^1.7.7",
+    "typescript": "^3.0.1",
+    "typescript-lit-html-plugin": "^0.5.3"
   }
 }
