@@ -1,13 +1,9 @@
 import * as path from 'path'
-//import VueLoaderPlugin from 'vue-loader/lib/plugin'
 import * as webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-//import HtmlWebpackPlugin from 'html-webpack-plugin'
 interface Configuration extends webpack.Configuration{
     devServer:any;
 }
-//const path =require('path')
-//const HtmlWebpackPlugin=require('html-webpack-plugin')
 const config:Configuration ={
     mode:'development',
     entry: {
@@ -20,7 +16,7 @@ const config:Configuration ={
         filename: '[name].js'
     },
     resolve: {
-        extensions: [ '.tsx', '.ts', '.js','.vue' ]
+        extensions: [ '.tsx', '.ts', '.js' ]
     },
     module: {
         rules: [

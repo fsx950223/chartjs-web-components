@@ -21,10 +21,8 @@
     "react",
     "vue"
   ],
-  "dependencies": {
-    "@polymer/lit-element": "^0.6.0"
-  },
   "devDependencies": {
+    "@polymer/lit-element": "^0.6.0",
     "@types/chart.js": "^2.7.34",
     "@types/node": "^10.9.4",
     "@types/react": "^16.4.14",
@@ -49,12 +47,14 @@
     "webpack": "^4.19.0",
     "webpack-bundle-analyzer": "^3.0.2",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.8"
+    "webpack-dev-server": "^3.1.8",
+    "webpack-node-externals": "^1.7.2"
   },
   "peerDependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "vue": "^2.5.17",
-    "chart.js": "^2.7.2"
+    "chart.js": "^2.7.2",
+    "@polymer/lit-element": "^0.6.0"
   }
 }
