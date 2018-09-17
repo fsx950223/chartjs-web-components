@@ -1,13 +1,14 @@
-//import * as path from 'path'
+import * as path from 'path'
 //import VueLoaderPlugin from 'vue-loader/lib/plugin'
-//import * as webpack from 'webpack'
+import * as webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 //import HtmlWebpackPlugin from 'html-webpack-plugin'
-// interface Configuration extends webpack.Configuration{
-//     devServer:any;
-// }
-const path =require('path')
-const HtmlWebpackPlugin=require('html-webpack-plugin')
-const config ={
+interface Configuration extends webpack.Configuration{
+    devServer:any;
+}
+//const path =require('path')
+//const HtmlWebpackPlugin=require('html-webpack-plugin')
+const config:Configuration ={
     mode:'development',
     entry: {
         web:'./demo/demo.ts',
