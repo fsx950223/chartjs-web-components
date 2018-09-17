@@ -3,7 +3,8 @@
 </template>
 <script lang='ts'>
 import {Vue,Component,Prop,Watch} from 'vue-property-decorator'
-@Component()
+import './base'
+@Component({})
 export default class Chartjs extends Vue{
     @Prop(Object)
     data

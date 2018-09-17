@@ -1,32 +1,56 @@
-import {LitElement,html} from '@polymer/lit-element'
-import 'chart.js/dist/Chart.bundle.min.js'
-  
-declare var Chart
+import {LitElement,html,property} from '@polymer/lit-element'
+import {Chart} from 'chart.js'
+
 class BaseChart extends LitElement{
     chart=null
-    static get properties(){
-        return {
-            type:String,
-            data:Object,
-            options:Object
+    @property({type:String})
+    type
+    @property({type:Object})
+    data
+    @property({type:Object})
+    options
+    
+    firstUpdated(){
+        const data=typeof this.data==='string'?JSON.parse(this.data):(this.data||{})
+        const options=typeof this.options==='string'?JSON.parse(this.options):(this.options||{})
+        if(!this.chart){
+            const ctx=this.shadowRoot.querySelector('canvas').getContext('2d')
+            this.chart=new Chart(ctx, {
+                type: this.type,
+                data,
+                options
+            });
+        }else{
+            this.chart.type=this.type
+            this.chart.data=data
+            this.chart.options=options
+            this.chart.update()
         }
-    }
-    _firstRendered(){
+        this.chart.data=this.observe(this.chart.data)       
+        for(const prop in this.chart.data){
+            this.chart.data[prop]=this.observe(this.chart.data[prop])
+        }
+        this.chart.data.datasets=this.chart.data.datasets.map(dataset=>{
+            dataset.data=this.observe(dataset.data)
+            return this.observe(dataset)
+        })
         window.addEventListener('resize',()=>{
-            this.chart.resize()
+            if(this.chart){
+                this.chart.resize()
+            }
         })
     }
     observe(obj){
-        const {update}=this
+        const {updateChart}=this
         return new Proxy(obj,{
             set(target,prop,val,receiver){
                 target[prop]=val
-                Promise.resolve().then(()=>update())
+                Promise.resolve().then(()=>updateChart())
                 return true
             }
         })
     }
-    _render(){
+    render(){
         return html`
             <style>
                 .chart-size{
@@ -42,40 +66,32 @@ class BaseChart extends LitElement{
             </div>
         `;
     }
-    _didRender(props,changedProps,oldProps){
-        const data=typeof props.data==='string'?JSON.parse(props.data):(props.data||{})
-        const options=typeof props.options==='string'?JSON.parse(props.options):(props.options||{})
-        if(!this.chart){
-            const ctx=this.shadowRoot.querySelector('canvas').getContext('2d')
-            this.chart=new Chart(ctx, {
-                type: props.type,
-                data,
-                options
-            });
-        }else{
-            this.chart.type=props.type
-            this.chart.data=data
-            this.chart.options=options
+    get updateComplete(){
+        return (async () => {
+            return await super.updateComplete
+        })();
+    }
+    updateChart=()=>{
+        if(this.chart){
             this.chart.update()
         }
-        this.chart.data=this.observe(this.chart.data)       
-        for(const prop in this.chart.data){
-            this.chart.data[prop]=this.observe(this.chart.data[prop])
-        }
-        this.chart.data.datasets=this.chart.data.datasets.map(dataset=>{
-            dataset.data=this.observe(dataset.data)
-            return this.observe(dataset)
-        })
-    }
-    update=()=>{
-        this.chart.update()
     }
     get dataValue(){
-        return this.chart.data
+        if(this.chart){
+            return this.chart.data
+        }else{
+            return {}
+        }
     }
     get optionsValue(){
-        return this.chart.options
+        if(this.chart){
+            return this.chart.options
+        }else{
+            return {}
+        }
     }
 }
-
-customElements.define('base-chart', BaseChart);
+if(!customElements.get('base-chart')){
+    customElements.define('base-chart', BaseChart);
+}
+export default BaseChart;

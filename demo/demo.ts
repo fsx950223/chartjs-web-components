@@ -2,12 +2,6 @@ import { LitElement, html } from '@polymer/lit-element';
 import '../src/base';
 
 class MyDemo extends LitElement {
-  static get properties() {
-    return {
-      type: String,
-      data: Object
-    }
-  }
   data={
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [{
@@ -19,12 +13,13 @@ class MyDemo extends LitElement {
   }
   options={}
   type="line"
-  _render({type,data,options}) {
+  render() {
+    const {type,data,options}=this
     return html`
-      <base-chart type="${type}" data="${data}" options="${options}"></base-chart>
+      <base-chart type="${type}" .data="${data}" .options="${options}"></base-chart>
     `;
   }
-  _didRender(){
+  firstUpdated(){
     setInterval(()=>{
       this.data.labels.push('July')
       this.data.datasets[0].data.push(parseInt(''+Math.random()*100))
