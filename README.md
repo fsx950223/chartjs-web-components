@@ -19,10 +19,14 @@ import 'chartjs-web-components'
 ``` js
 import 'chartjs-web-components'
 ```
-## Add Data
-``` js
-document.querySelector('#chart').dataValue.dataset[0].data.push(data)
+## React Example
+``` jsx
+<Chartjs data={data} type={type}/>
 ```
+``` js
+import Chartjs from '../src/react'
+```
+
 ## Demo
 ```
 npm run start
