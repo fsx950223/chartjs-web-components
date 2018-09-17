@@ -23,8 +23,6 @@ class MyDemo extends LitElement {
     setInterval(()=>{
       this.data.labels.push('July')
       this.data.datasets[0].data.push(parseInt(''+Math.random()*100))
-      // this.shadowRoot.querySelector('base-chart').dataValue.labels.push('July')
-      // this.shadowRoot.querySelector('base-chart').dataValue.datasets[0].data.push(parseInt(''+Math.random()*100))
     },3000)
   }
 }

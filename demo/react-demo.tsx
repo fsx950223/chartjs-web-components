@@ -12,15 +12,30 @@ const data={
     }]
 }
 const type="line"
-setInterval(()=>{
-    data.labels.push('July')
-    data.datasets[0].data.push(parseInt(''+Math.random()*100))
-    ReactDOM.render(
-        <Chartjs data={data} type={type}/>,
-        document.getElementById("example")
-    );
-  },3000)
+
+class Demo extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={
+            data,
+            type
+        }
+        setInterval(()=>{
+            data.labels.push('July')
+            data.datasets[0].data.push(parseInt(''+Math.random()*100))
+            const copy=Object.assign({},data)
+            this.setState(state=>({
+                data:copy
+            }))
+          },3000)
+    }
+    render() {
+      return (
+        <Chartjs data={data} type={type}/>
+      );
+    }
+  }
 ReactDOM.render(
-    <Chartjs data={data} type={type}/>,
+    <Demo/>,
     document.getElementById("example")
 );

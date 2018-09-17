@@ -6,17 +6,16 @@
 //     devServer:any;
 // }
 const path =require('path')
-const VueLoaderPlugin =require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin=require('html-webpack-plugin')
 const config ={
     mode:'development',
     entry: {
-        index:'./index.ts',
         web:'./demo/demo.ts',
-        react:'./demo/react-demo.tsx'
+        react:'./demo/react-demo.tsx',
+        vue:'./demo/vue-demo.ts'
     },
     output:{
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname,'..', 'dist'),
         filename: '[name].js'
     },
     resolve: {
@@ -25,14 +24,9 @@ const config ={
     module: {
         rules: [
             { test: /\.tsx?$/, use: 'ts-loader' },
-            {
-                test: /\.vue$/,
-                use: 'vue-loader'
-            }
         ]
     },
     plugins:[
-        new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             title: 'Demo',
             filename: 'index.html',

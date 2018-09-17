@@ -16,15 +16,23 @@ interface Props{
 }
 export default class Chartjs extends React.Component<Props,{}>{
     chart=null
+    ref:string=null
+    constructor(props){
+        super(props)
+        this.ref = btoa(Date.now()+parseInt(''+Math.random()*10000)+'').replace(/=/g,'');
+    }
     componentDidMount(){
-        this.chart=document.querySelector('#chartjs-web-components')
-        this.componentDidUpdate()
+        this.chart=document.querySelector('#'+this.ref)
     }
     render(){
-        return <base-chart id="chartjs-web-components" type={this.props.type}></base-chart>
+        return <base-chart id={this.ref} type={this.props.type}></base-chart>
     }
-    componentDidUpdate(){
-        Object.assign(this.chart.dataValue,this.props.data||{})
-        Object.assign(this.chart.optionsValue,this.props.options||{})
+    componentDidUpdate(prevProps){
+        //if(JSON.stringify(prevProps.data)!==JSON.stringify(this.props.data)){
+            Object.assign(this.chart.dataValue,this.props.data||{})
+        //}
+        //if(JSON.stringify(prevProps.options)!==JSON.stringify(this.props.options)){
+            Object.assign(this.chart.optionsValue,this.props.options||{})
+        //}
     }
 }
