@@ -18,7 +18,15 @@ const config: webpack.Configuration = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'ts-loader'
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'minify-lit-html-loader',
+                    },
+                    {
+                        loader:'ts-loader'
+                    }
+                ]
             }
         ]
     },
