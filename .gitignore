@@ -5,5 +5,4 @@ yarn.lock
 .vscode
 package-lock.json
 **/*.map
-dist/
 

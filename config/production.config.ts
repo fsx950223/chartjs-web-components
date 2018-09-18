@@ -2,7 +2,7 @@ import * as path from 'path'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import * as webpack from 'webpack'
-import nodeExternals from 'webpack-node-externals';
+import nodeExternals from 'webpack-node-externals'
 const config: webpack.Configuration = {
     mode: 'production',
     entry: './index.ts',
