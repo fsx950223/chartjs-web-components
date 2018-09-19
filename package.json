@@ -1,0 +1,60 @@
+{
+  "name": "chartjs-web-components",
+  "version": "2.0.0",
+  "flat": true,
+  "contributors": [
+    "fsx950223"
+  ],
+  "main": "dist/index.js",
+  "license": "BSD-3-Clause",
+  "repository": "fsx950223/chartjs-web-components",
+  "scripts": {
+    "start": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack-dev-server --config config/development.config.ts --open",
+    "build": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack --config config/production.config.ts"
+  },
+  "keywords": [
+    "web-components",
+    "html",
+    "chart.js",
+    "lit-element",
+    "typescript",
+    "react",
+    "vue"
+  ],
+  "devDependencies": {
+    "@polymer/lit-element": "^0.6.1",
+    "@types/chart.js": "^2.7.34",
+    "@types/node": "^10.10.1",
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.7",
+    "@types/webpack": "^4.4.11",
+    "chart.js": "^2.7.2",
+    "clean-webpack-plugin": "^0.1.19",
+    "compression-webpack-plugin": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "minify-lit-html-loader": "0.0.3",
+    "polymer-cli": "^1.8.0",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "ts-loader": "^5.1.1",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.6.0",
+    "typescript": "^3.0.3",
+    "typescript-lit-html-plugin": "^0.5.3",
+    "vue": "^2.5.17",
+    "vue-loader": "^15.4.2",
+    "vue-property-decorator": "^7.0.0",
+    "webpack": "^4.19.0",
+    "webpack-bundle-analyzer": "^3.0.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "vue": "^2.5.17",
+    "chart.js": "^2.7.2",
+    "@polymer/lit-element": "^0.6.1"
+  }
+}
