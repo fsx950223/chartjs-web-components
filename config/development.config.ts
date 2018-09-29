@@ -23,6 +23,17 @@ const config:Configuration ={
             { test: /\.tsx?$/, use: 'ts-loader' },
         ]
     },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    name: 'commons',
+                    chunks: 'initial',
+                    minChunks: 2
+                }
+            }
+        }
+    },
     plugins:[
         new HtmlWebpackPlugin({
             title: 'Demo',

@@ -1,7 +1,6 @@
-import {LitElement,html,property,customElement} from '@polymer/lit-element'
+import {LitElement,html,property} from '@polymer/lit-element'
 import {Chart} from 'chart.js'
 
-@customElement('base-chart' as keyof HTMLElementTagNameMap)
 export default class BaseChart extends LitElement{
     chart=null
     @property({type:String})
@@ -91,4 +90,7 @@ export default class BaseChart extends LitElement{
             return {}
         }
     }
+}
+if(!customElements.get('base-chart')){
+    customElements.define('base-chart',BaseChart)
 }

@@ -18,8 +18,8 @@ new Vue({
     },
     mounted(){
         setInterval(()=>{
-            // this.data.labels.push('July')
-            // this.data.datasets[0].data.push(parseInt(''+Math.random()*100))
+            this.data.labels.push('July')
+            this.data.datasets[0].data.push(parseInt(''+Math.random()*100))
         },3000)
     },
     render(h){ 

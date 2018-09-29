@@ -17,7 +17,7 @@ export default class Chartjs extends Vue{
         this.chart=this.$refs[this.ref]
     }
     render(createElement){
-        return createElement('base-chart',{props:{type:this.type},ref:this.ref})
+        return createElement('base-chart',{attrs:{type:this.type},ref:this.ref})
     }
     @Watch('data',{ deep: true })
     onDataChange(val){
