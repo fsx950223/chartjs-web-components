@@ -1,30 +1,29 @@
 # Chartjs Web Components
-
 The web components for chart.js which is built on lit-element
 ## Install
-```
+``` bash
 npm i chartjs-web-components
 ```
-## Usage
+## Lit-Element Usage
 ``` html
-<base-chart id="chart" type="chartType" data="${chartData}" options="${chartOptions}"></base-chart>
+<base-chart id="chart" type="chartType" .data="${chartData}" .options="${chartOptions}"></base-chart>
 ```
 ``` js
 import 'chartjs-web-components'
 ```
 ## Vue Example
 ``` html
-<base-chart id="chart" type="chartType" :data="JSON.stringify(this.chartData)" :options="JSON.stringify(this.chartOptions)"></base-chart>
+<base-chart id="chart" type="chartType" :data="data" :options="options"></base-chart>
 ```
 ``` js
-import 'chartjs-web-components'
+import VueChartjs from 'chartjs-web-components/dist/vue.js'
 ```
 ## React Example
 ``` jsx
-import {ReactChartjs} from 'chartjs-web-components'
-<ReactChartjs data={data} type={type}/>
+import ReactChartjs from 'chartjs-web-components/dist/react.js'
+<ReactChartjs data={data} type={type} options={options}/>
 ```
 ## Demo
-```
+``` bash
 npm run start
 ```
