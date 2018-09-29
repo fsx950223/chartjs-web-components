@@ -31,7 +31,7 @@ const config: webpack.Configuration = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dist'],{root:'/mnt/c/Users/Thinkpad/Documents/chartjs-web-components'}),
+        new CleanWebpackPlugin(['dist'],{root:path.resolve(__dirname,'../')}),
         new BundleAnalyzerPlugin()
     ]
 }
