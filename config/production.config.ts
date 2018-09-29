@@ -5,10 +5,10 @@ import * as webpack from 'webpack'
 import nodeExternals from 'webpack-node-externals'
 const config: webpack.Configuration = {
     mode: 'production',
-    entry: './index.ts',
+    entry: {base:'./src/base.ts',react:'./src/react.tsx',vue:'./src/vue.ts'},
     output: {
         path: path.resolve(__dirname, "..", 'dist'),
-        filename: 'index.js'
+        filename: '[name].js'
     },
     resolve: {
         extensions: ['.tsx', '.ts','.js']
@@ -31,7 +31,7 @@ const config: webpack.Configuration = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin('dist', {}),
+        new CleanWebpackPlugin(['dist'],{root:'/mnt/c/Users/Thinkpad/Documents/chartjs-web-components'}),
         new BundleAnalyzerPlugin()
     ]
 }

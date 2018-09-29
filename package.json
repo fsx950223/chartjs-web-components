@@ -5,7 +5,7 @@
   "contributors": [
     "fsx950223"
   ],
-  "main": "dist/index.js",
+  "main": "dist/base.js",
   "license": "BSD-3-Clause",
   "repository": "fsx950223/chartjs-web-components",
   "scripts": {
