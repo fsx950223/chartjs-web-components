@@ -1,0 +1,8 @@
+src/
+demo/
+config/
+tsconfig.json
+tsconfig-for-webpack-config.json
+node_modules/
+.DS_Store
+.vscode
