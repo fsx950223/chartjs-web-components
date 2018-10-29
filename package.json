@@ -6,7 +6,7 @@
     "fsx950223"
   ],
   "main": "dist/base.js",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "repository": "fsx950223/chartjs-web-components",
   "scripts": {
     "start": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack-dev-server --config config/development.config.ts --open",
