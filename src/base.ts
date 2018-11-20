@@ -3,16 +3,16 @@ import {Chart} from 'chart.js'
 
 export default class BaseChart extends LitElement{
     chart=null
-    @property({type:String})
+    @property()
     type
-    @property({type:Object})
+    @property()
     data
-    @property({type:Object})
+    @property()
     options
     
     firstUpdated(){
-        const data=typeof this.data==='string'?JSON.parse(this.data):(this.data||{})
-        const options=typeof this.options==='string'?JSON.parse(this.options):(this.options||{})
+        const data=this.data||{}
+        const options=this.options||{}
         if(!this.chart){
             const ctx=this.shadowRoot.querySelector('canvas').getContext('2d')
             this.chart=new Chart(ctx, {
@@ -35,9 +35,7 @@ export default class BaseChart extends LitElement{
             return this.observe(dataset)
         })
         window.addEventListener('resize',()=>{
-            if(this.chart){
-                this.chart.resize()
-            }
+            this.chart&&this.chart.resize()
         })
     }
     observe(obj){
@@ -72,23 +70,7 @@ export default class BaseChart extends LitElement{
         })();
     }
     updateChart=()=>{
-        if(this.chart){
-            this.chart.update()
-        }
-    }
-    get dataValue(){
-        if(this.chart){
-            return this.chart.data
-        }else{
-            return {}
-        }
-    }
-    get optionsValue(){
-        if(this.chart){
-            return this.chart.options
-        }else{
-            return {}
-        }
+        this.chart&&this.chart.update()
     }
 }
 if(!customElements.get('base-chart')){

@@ -23,16 +23,15 @@ export default class Chartjs extends React.Component<Props,{}>{
     }
     componentDidMount(){
         this.chart=document.querySelector('#'+this.ref)
+        this.chart.data=this.props.data||{}
+        this.chart.options=this.props.options||{}
     }
     render(){
         return <base-chart id={this.ref} type={this.props.type}></base-chart>
     }
     componentDidUpdate(prevProps){
-        //if(JSON.stringify(prevProps.data)!==JSON.stringify(this.props.data)){
-            Object.assign(this.chart.dataValue,this.props.data||{})
-        //}
-        //if(JSON.stringify(prevProps.options)!==JSON.stringify(this.props.options)){
-            Object.assign(this.chart.optionsValue,this.props.options||{})
-        //}
+        Object.assign(this.chart.data,prevProps.data||{})
+        Object.assign(this.chart.options,prevProps.options||{})
+        this.render()
     }
 }
