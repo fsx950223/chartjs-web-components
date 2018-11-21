@@ -19,7 +19,7 @@ export default class Chartjs extends React.Component<Props, {}> {
     public ref: string = null;
     constructor(props: Props) {
         super(props);
-        this.ref = btoa(`${Date.now() + crypto.getRandomValues(new Uint32Array(1))[0]}`).replace(/=/g,'');
+        this.ref = btoa(`${Date.now() + crypto.getRandomValues(new Uint32Array(1))[0]}`).replace(/=/g, '');
     }
     public componentDidMount(): void {
         this.chart = document.querySelector(`#${this.ref}`) as Chart.ChartConfiguration;

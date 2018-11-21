@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueChartjs from '../src/vue';
 new Vue({
-    el: '#app',
+    el: '#vue',
     data() {
         return {
             data: {

@@ -6,6 +6,8 @@
         "export-name":false,
         "no-import-side-effect":false,
         "missing-jsdoc":false,
-        "no-backbone-get-set-outside-model":false
+        "no-backbone-get-set-outside-model":false,
+        "no-relative-imports":false,
+        "no-any":false
     }
 }
