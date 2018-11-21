@@ -1,22 +1,23 @@
-import {Vue,Component,Prop} from 'vue-property-decorator'
-import './base'
+import { CreateElement, VNode } from 'vue';
+import {Component, Prop, Vue} from 'vue-property-decorator';
+import './base';
 @Component({})
-export default class Chartjs extends Vue{
-    @Prop(Object)
-    data
-    @Prop(Object)
-    options
-    @Prop(String)
-    type
-    chart=null
-    ref:string=null
-    created(){
-        this.ref=btoa(Date.now()+parseInt(''+Math.random()*10000)+'').replace(/=/g,'')
+export default class Chartjs extends Vue {
+    @Prop({type: Object})
+    public data: Chart.ChartData;
+    @Prop({type: Object})
+    public options: Chart.ChartOptions;
+    @Prop({type: String})
+    public type: Chart.ChartType; // tslint:disable-line:no-reserved-keywords
+    public chart: Vue | Element | Vue[] | Element[] = null;
+    public ref: string = null;
+    public created(): void {
+        this.ref = btoa(`${Date.now() + crypto.getRandomValues(new Uint32Array(1))[0]}`);
     }
-    mounted(){
-        this.chart=this.$refs[this.ref]
+    public mounted(): void {
+        this.chart = this.$refs[this.ref];
     }
-    render(createElement){
-        return createElement('base-chart',{attrs:{type:this.type},ref:this.ref,domProps:{data:this.data,options:this.options}})
+    public render(createElement: CreateElement): VNode {
+        return createElement('base-chart', {attrs: {type: this.type}, ref: this.ref, domProps: {data: this.data, options: this.options}});
     }
 }

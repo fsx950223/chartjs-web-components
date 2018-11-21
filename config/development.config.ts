@@ -1,18 +1,18 @@
-import * as path from 'path'
-import * as webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-interface Configuration extends webpack.Configuration{
-    devServer:any;
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as path from 'path';
+import * as webpack from 'webpack';
+interface Configuration extends webpack.Configuration {
+    devServer: any;
 }
-const config:Configuration ={
-    mode:'development',
+const config: Configuration = {
+    mode: 'development',
     entry: {
-        web:'./demo/demo.ts',
-        react:'./demo/react-demo.tsx',
-        vue:'./demo/vue-demo.ts'
+        web: './demo/demo.ts',
+        react: './demo/react-demo.tsx',
+        vue: './demo/vue-demo.ts'
     },
-    output:{
-        path: path.resolve(__dirname,'..', 'dist'),
+    output: {
+        path: path.resolve(__dirname, '..', 'dist'),
         filename: '[name].js'
     },
     resolve: {
@@ -20,7 +20,7 @@ const config:Configuration ={
     },
     module: {
         rules: [
-            { test: /\.tsx?$/, use: 'ts-loader' },
+            { test: /\.tsx?$/, use: 'ts-loader' }
         ]
     },
     optimization: {
@@ -34,7 +34,7 @@ const config:Configuration ={
             }
         }
     },
-    plugins:[
+    plugins: [
         new HtmlWebpackPlugin({
             title: 'Demo',
             filename: 'index.html',
@@ -43,9 +43,9 @@ const config:Configuration ={
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
-        index:'index.html',
+        index: 'index.html',
         compress: true,
         port: 9000
     }
-}
-module.exports=config
+};
+module.exports = config;

@@ -5,12 +5,19 @@
   "contributors": [
     "fsx950223"
   ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS && npm run lint"
+    }
+  },
   "main": "dist/base.js",
   "license": "MIT",
   "repository": "fsx950223/chartjs-web-components",
   "scripts": {
     "start": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack-dev-server --config config/development.config.ts --open",
-    "build": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack --config config/production.config.ts"
+    "build": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack --config config/production.config.ts",
+    "prepublish": "npm run build",
+    "lint": "tslint -c tslint.json --fix 'src/**/*.{ts,tsx}'"
   },
   "keywords": [
     "web-components",
@@ -22,6 +29,8 @@
     "vue"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
     "@polymer/lit-element": "^0.6.3",
     "@types/chart.js": "^2.7.40",
     "@types/node": "^10.12.9",
@@ -38,6 +47,8 @@
     "ts-loader": "^5.3.0",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.7.0",
+    "tslint": "^5.11.0",
+    "tslint-microsoft-contrib": "^5.2.1",
     "typescript": "^3.1.6",
     "typescript-lit-html-plugin": "^0.9.0",
     "vue": "^2.5.17",
@@ -51,6 +62,7 @@
   },
   "peerDependencies": {
     "react": "^16.6.3",
+    "vue-property-decorator": "^7.2.0",
     "react-dom": "^16.6.3",
     "vue": "^2.5.17",
     "chart.js": "^2.7.3",

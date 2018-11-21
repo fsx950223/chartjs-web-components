@@ -1,58 +1,63 @@
-import {LitElement,html,property} from '@polymer/lit-element'
-import {Chart} from 'chart.js'
+import {html, LitElement, property} from '@polymer/lit-element';
+import {Chart} from 'chart.js';
 
-export default class BaseChart extends LitElement{
-    chart=null
+export default class BaseChart extends LitElement {
+    public chart: Chart.ChartConfiguration&Chart = null;
     @property()
-    type
+    public type: Chart.ChartType; // tslint:disable-line:no-reserved-keywords
     @property()
-    data
+    public data: Chart.ChartData;
     @property()
-    options
-    
-    firstUpdated(){
-        const data=this.data||{}
-        const options=this.options||{}
-        if(!this.chart){
-            const ctx=this.shadowRoot.querySelector('canvas').getContext('2d')
-            this.chart=new Chart(ctx, {
+    public options: Chart.ChartOptions;
+
+    public firstUpdated(): void {
+        const data: Chart.ChartData = this.data || {};
+        const options: Chart.ChartOptions = this.options || {};
+        if (!this.chart) {
+            const ctx: CanvasRenderingContext2D = this.shadowRoot.querySelector('canvas').getContext('2d');
+            this.chart = new Chart(ctx, {
                 type: this.type,
                 data,
                 options
             });
-        }else{
-            this.chart.type=this.type
-            this.chart.data=data
-            this.chart.options=options
-            this.chart.update()
+        } else {
+            this.chart.type = this.type;
+            this.chart.data = data;
+            this.chart.options = options;
+            this.chart.update();
         }
-        this.chart.data=this.observe(this.chart.data)       
-        for(const prop in this.chart.data){
-            this.chart.data[prop]=this.observe(this.chart.data[prop])
+        this.chart.data = this.observe(this.chart.data);
+        for (const prop of Object.keys(this.chart.data)) {
+            this.chart.data[prop] = this.observe(this.chart.data[prop]);
         }
-        this.chart.data.datasets=this.chart.data.datasets.map(dataset=>{
-            dataset.data=this.observe(dataset.data)
-            return this.observe(dataset)
-        })
-        window.addEventListener('resize',()=>{
-            this.chart&&this.chart.resize()
-        })
-    }
-    observe(obj){
-        const {updateChart}=this
-        return new Proxy(obj,{
-            set(target,prop,val,receiver){
-                target[prop]=val
-                Promise.resolve().then(()=>updateChart())
-                return true
+        this.chart.data.datasets = this.chart.data.datasets.map((dataset: Chart.ChartDataSets) => {
+            dataset.data = this.observe(dataset.data);
+
+            return this.observe(dataset);
+        });
+        window.addEventListener('resize', () => {
+            if (this.chart) {
+                this.chart.resize();
             }
-        })
+        });
     }
-    render(){
+    public observe<T extends object>(obj: T): T {
+        const updateChart: () => void = this.updateChart;
+
+        return new Proxy(obj, {
+            set: (target: T, prop: string, val: unknown): boolean => {
+                target[prop] = val;
+                Promise.resolve().then(updateChart);
+
+                return true;
+            }
+        });
+    }
+    public render(): unknown {
         return html`
             <style>
                 .chart-size{
-                    position: relative; 
+                    position: relative;
                 }
                 canvas{
                     width:400px;
@@ -64,15 +69,17 @@ export default class BaseChart extends LitElement{
             </div>
         `;
     }
-    get updateComplete(){
-        return (async () => {
-            return await super.updateComplete
+    get updateComplete(): Promise<unknown> {
+        return (async (): Promise<unknown> => {
+            return super.updateComplete;
         })();
     }
-    updateChart=()=>{
-        this.chart&&this.chart.update()
+    public updateChart = (): void => {
+        if (this.chart) {
+            this.chart.update();
+        }
     }
 }
-if(!customElements.get('base-chart')){
-    customElements.define('base-chart',BaseChart)
+if (!customElements.get('base-chart')) {
+    customElements.define('base-chart', BaseChart);
 }

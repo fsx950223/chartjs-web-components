@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {ReactChartjs} from '../index'
+import ReactChartjs from '../src/react'
 
 const data={
     labels: ["January", "February", "March", "April", "May", "June", "July"],
