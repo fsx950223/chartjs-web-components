@@ -1,6 +1,8 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as path from 'path';
 import * as webpack from 'webpack';
+import * as fs from 'fs'
+const banner=fs.readFileSync(path.resolve(__dirname, '..', 'LICENSE')).toString()
 interface Configuration extends webpack.Configuration {
     devServer: any;
 }
@@ -35,6 +37,7 @@ const config: Configuration = {
         }
     },
     plugins: [
+        new webpack.BannerPlugin(banner),
         new HtmlWebpackPlugin({
             title: 'Demo',
             filename: 'index.html',

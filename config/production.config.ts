@@ -3,6 +3,8 @@ import * as path from 'path';
 import * as webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import WebpackNodeExternals from 'webpack-node-externals';
+import * as fs from 'fs'
+const banner=fs.readFileSync(path.resolve(__dirname, '..', 'LICENSE')).toString()
 const config: webpack.Configuration = {
     mode: 'production',
     entry: {base: './src/base.ts', react: './src/react.tsx', vue: './src/vue.ts'},
@@ -31,6 +33,7 @@ const config: webpack.Configuration = {
         ]
     },
     plugins: [
+        new webpack.BannerPlugin(banner),
         new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
         new BundleAnalyzerPlugin()
     ]

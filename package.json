@@ -16,7 +16,7 @@
   "scripts": {
     "start": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack-dev-server --config config/development.config.ts --open",
     "build": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack --config config/production.config.ts",
-    "prepublish": "npm run build",
+    "prepublish": "npm run lint && npm run build",
     "lint": "tslint -c tslint.json --fix 'src/**/*.{ts,tsx}'"
   },
   "keywords": [
