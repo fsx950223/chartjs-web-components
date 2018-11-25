@@ -10,7 +10,7 @@ const config: webpack.Configuration = {
     entry: {base: './src/base.ts', react: './src/react.tsx', vue: './src/vue.ts'},
     output: {
         path: path.resolve(__dirname, '..', 'dist'),
-        filename: `[name].${process.env.MODULE}.js`
+        filename: `[name].js`
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
