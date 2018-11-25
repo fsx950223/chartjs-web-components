@@ -1,6 +1,6 @@
 {
   "name": "chartjs-web-components",
-  "version": "2.2.0",
+  "version": "2.4.0",
   "flat": true,
   "contributors": [
     "fsx950223"
@@ -10,7 +10,8 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS && npm run lint"
     }
   },
-  "main": "dist/base.js",
+  "main": "dist/base.common.js",
+  "unpkg": "dist/base.root.js",
   "license": "MIT",
   "repository": "fsx950223/chartjs-web-components",
   "scripts": {
