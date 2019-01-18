@@ -1,6 +1,6 @@
 import { CreateElement, VNode } from 'vue';
 import {Component, Prop, Vue} from 'vue-property-decorator';
-import './base';
+import base from './base';
 @Component({})
 export default class Chartjs extends Vue {
     @Prop({type: Object})
@@ -9,8 +9,8 @@ export default class Chartjs extends Vue {
     public options: Chart.ChartOptions;
     @Prop({type: String})
     public type: Chart.ChartType; // tslint:disable-line:no-reserved-keywords
-    public chart: Vue | Element | Vue[] | Element[] = null;
-    public ref: string = null;
+    public chart: Vue | Element | Vue[] | Element[];
+    public ref: string;
     public created(): void {
         this.ref = btoa(`${Date.now() + crypto.getRandomValues(new Uint32Array(1))[0]}`);
     }

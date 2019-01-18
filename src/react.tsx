@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './base';
+import base from './base';
 
 declare global {
     namespace JSX {
@@ -15,11 +15,12 @@ type Props= {
     type: Chart.ChartType; // tslint:disable-line:no-reserved-keywords
 };
 export default class Chartjs extends React.Component<Props, {}> {
-    public chart: Chart.ChartConfiguration = null;
-    public ref: string = null;
+    public chart: Chart.ChartConfiguration;
+    public ref: string;
     constructor(props: Props) {
         super(props);
-        this.ref = btoa(`${Date.now() + crypto.getRandomValues(new Uint32Array(1))[0]}`).replace(/=/g, '');
+        this.ref = btoa(`${Date.now() + crypto.getRandomValues(new Uint32Array(1))[0]}`)
+        .replace(/=/g, '');
     }
     public componentDidMount(): void {
         this.chart = document.querySelector(`#${this.ref}`) as Chart.ChartConfiguration;
