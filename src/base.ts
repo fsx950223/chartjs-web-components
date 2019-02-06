@@ -1,4 +1,4 @@
-import {html, LitElement, property, TemplateResult} from '@polymer/lit-element';
+import {html, LitElement, property, TemplateResult} from 'lit-element';
 import {Chart} from 'chart.js';
 
 export default class BaseChart extends LitElement {

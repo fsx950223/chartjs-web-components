@@ -2,7 +2,7 @@ import CleanWebpackPlugin from 'clean-webpack-plugin';
 import * as path from 'path';
 import * as webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import CompressionPlugin from 'compression-webpack-plugin';
+//import CompressionPlugin from 'compression-webpack-plugin';
 import * as fs from 'fs'
 const banner=fs.readFileSync(path.resolve(__dirname, '..', 'LICENSE')).toString()
 const config: webpack.Configuration = {
@@ -36,7 +36,7 @@ const config: webpack.Configuration = {
         new webpack.BannerPlugin(banner),
         new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
         new BundleAnalyzerPlugin(),
-        new CompressionPlugin()
+        //new CompressionPlugin()
     ]
 };
 module.exports = config;
