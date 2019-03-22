@@ -14,6 +14,9 @@ type Props= {
     options?: Chart.ChartOptions;
     type: Chart.ChartType; // tslint:disable-line:no-reserved-keywords
 };
+/**
+ * React Wrapper for charjs-web-components
+ */
 export default class Chartjs extends React.Component<Props, {}> {
     public chart: Chart.ChartConfiguration;
     public ref: string;

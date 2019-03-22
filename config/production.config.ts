@@ -34,7 +34,7 @@ const config: webpack.Configuration = {
     },
     plugins: [
         new webpack.BannerPlugin(banner),
-        new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
+        new CleanWebpackPlugin(),
         new BundleAnalyzerPlugin(),
         //new CompressionPlugin()
     ]

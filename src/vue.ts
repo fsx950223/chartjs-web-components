@@ -1,6 +1,9 @@
 import { CreateElement, VNode } from 'vue';
 import {Component, Prop, Vue} from 'vue-property-decorator';
 import base from './base';
+/**
+ * Vue Wrapper for charjs-web-components
+ */
 @Component({})
 export default class Chartjs extends Vue {
     @Prop({type: Object})

@@ -1,6 +1,8 @@
-import {html, LitElement, property, TemplateResult} from 'lit-element';
 import {Chart} from 'chart.js';
-
+import {html, LitElement, property, TemplateResult} from 'lit-element';
+/**
+ * Base Chart of chartjs-web-components
+ */
 export default class BaseChart extends LitElement {
     public chart: Chart.ChartConfiguration&Chart;
     @property()
