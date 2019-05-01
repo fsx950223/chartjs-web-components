@@ -6,3 +6,4 @@ tsconfig-for-webpack-config.json
 node_modules/
 .DS_Store
 .vscode
+live-demo/
