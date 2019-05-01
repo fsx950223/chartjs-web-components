@@ -1,7 +1,7 @@
 # Chartjs Web Components
 The web components for chart.js which is built on lit-element
 ## Live Demo
-
+https://fsx950223.github.io/chartjs-web-components/live-demo/
 ## Install
 ``` bash
 npm i chartjs-web-components
