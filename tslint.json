@@ -8,6 +8,8 @@
         "missing-jsdoc":false,
         "no-backbone-get-set-outside-model":false,
         "no-relative-imports":false,
-        "no-any":false
+        "no-any":false,
+	"interface-name":false
     }
+
 }

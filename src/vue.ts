@@ -12,7 +12,7 @@ export default class Chartjs extends Vue {
     public options: Chart.ChartOptions;
     @Prop({type: String})
     public type: Chart.ChartType; // tslint:disable-line:no-reserved-keywords
-    public chart: Vue | Element | Vue[] | Element[];
+    public chart: Vue | Element | (Vue | Element)[];
     public ref: string;
     public created(): void {
         this.ref = btoa(`${Date.now() + crypto.getRandomValues(new Uint32Array(1))[0]}`);
